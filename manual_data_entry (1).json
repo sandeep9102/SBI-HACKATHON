@@ -1,0 +1,22 @@
+{
+    "policy_holder_name": "Sandeep",
+    "assured_age": "15",
+    "nominee_relation": "Brother",
+    "occupation": "Business",
+    "policy_sum_assured": "50000",
+    "premium": "4000",
+    "premium_payment_mode": "Quarterly",
+    "annual_income": "30000",
+    "holder_marital_status": "Married",
+    "indiv_requirement_flag": "Non Medical",
+    "policy_term": "5000",
+    "policy_payment_term": "2",
+    "product_type": "Traditional",
+    "channel": "Institutional Alliance",
+    "bank_code": "33333",
+    "policy_risk_commencement_date": "2019-02-01",
+    "date_of_death": "2022-02-02",
+    "intimation_date": "2021-02-02",
+    "status": "Rejection",
+    "sub_status": "Death Claim Paid"
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SBI Fraud Detection System</title>
+    <link rel="stylesheet" href="styles.css">
+   <!-- Load Gradio client before your script.js -->
+  
+<script src="https://cdn.jsdelivr.net/npm/@gradio/client@0.3.7/dist/client.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@gradio/client"></script>
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <img src="sbi_logo.png" alt="SBI Logo" class="logo">
+    <h1 class="title mt-9" style="font-size: 2rem;">Fraud Detection System</h1>
+</header>
+
+<!-- Main Content -->
+<main class="container">
+    <div class="grid">
+
+        <!-- Left Panel: Manual Data Entry -->
+        <div class="left-panel">
+            <div class="card">
+                <h2>Manual Data Entry</h2>
+                <form id="fraudForm">
+
+                    <label>Assured Age</label>
+                    <input type="number" name="assured_age" placeholder="Enter age" required>
+
+                    <label>Nominee Relation</label>
+                    <select name="nominee_relation" required>
+                        <option value="">Select nominee relation</option>
+                        <option>Brother</option><option>Daughter</option><option>Father</option>
+                        <option>Mother</option><option>Spouse</option><option>Son</option>
+                    </select>
+
+                    <label>Occupation</label>
+                    <select name="occupation" required>
+                        <option value="">Select occupation</option>
+                        <option>Business</option><option>Service</option><option>Student</option>
+                        <option>Retired</option><option>Housewife</option>
+                    </select>
+
+                    <label>Policy Sum Assured</label>
+                    <input type="number" name="policy_sum_assured" placeholder="Enter assured sum" required>
+
+                    <label>Premium</label>
+                    <input type="number" name="premium" step="0.01" placeholder="Enter premium amount" required>
+
+                    <label>Premium Payment Mode</label>
+                    <select name="premium_payment_mode" required>
+                        <option value="">Select payment mode</option>
+                        <option>Quarterly</option><option>Yearly</option><option>Half-yearly</option>
+                        <option>Monthly</option><option>Single</option>
+                    </select>
+
+                    <label>Annual Income</label>
+                    <input type="number" name="annual_income" placeholder="Enter annual income" required>
+
+                    <label>Marital Status</label>
+                    <select name="holder_marital_status" required>
+                        <option value="">Select marital status</option>
+                        <option>Single</option><option>Married</option>
+                        <option>Widowed</option><option>Divorced</option>
+                    </select>
+
+                    <label>Individual Requirement Flag</label>
+                    <select name="indiv_requirement_flag" required>
+                        <option value="">Select requirement flag</option>
+                        <option>Non Medical</option><option>Medical</option>
+                    </select>
+
+                    <label>Policy Term</label>
+                    <input type="number" name="policy_term" placeholder="Enter policy term (years)" required>
+
+                    <label>Policy Payment Term</label>
+                    <input type="number" name="policy_payment_term" placeholder="Enter payment term (years)" required>
+
+                    <label>Product Type</label>
+                    <select name="product_type" required>
+                        <option value="">Select product type</option>
+                        <option>ULIP</option><option>Traditional</option><option>Pension</option>
+                        <option>Health</option><option>Non Par</option>
+                    </select>
+
+                    <label>Channel</label>
+                    <select name="channel" required>
+                        <option value="">Select channel</option>
+                        <option>Retail Agency</option><option>Bancassurance</option>
+                        <option>Institutional Alliance</option><option>Mail and Others</option>
+                    </select>
+
+                    <label>Bank Code</label>
+                    <input type="number" name="bank_code" placeholder="Enter bank code" required>
+
+                    <label>Policy Risk Commencement Date</label>
+                    <input type="date" name="policy_risk_commencement_date" required>
+
+                    <label>Date of Death (if applicable)</label>
+                    <input type="date" name="date_of_death" placeholder="Enter if applicable">
+
+                    <label>Intimation Date</label>
+                    <input type="date" name="intimation_date" required>
+
+                    <label>Status</label>
+                    <select name="status" required>
+                        <option value="">Select status</option>
+                        <option>Claim</option><option>Cancellation</option><option>Lapse</option>
+                        <option>Technical Lapse</option><option>Inforce</option><option>Withdrawal</option>
+                        <option>Rejection</option><option>Maturity</option><option>Terminated</option>
+                    </select>
+
+                    <label for="sub_status">Sub-status</label>
+                    <select name="sub_status" id="sub_status" required>
+                        <option value="">Select an option</option>
+                        <option value="0">None</option>
+                        <option value="1">-</option>
+                        <option value="2">Death Claim Paid</option>
+                        <option value="3">Death Claim Repudiated</option>
+                        <option value="4">Declined</option>
+                        <option value="5">Dishonour</option>
+                        <option value="6">Disinvested Paid</option>
+                        <option value="7">Disinvested Unpaid</option>
+                        <option value="8">Free Look Cancellation</option>
+                        <option value="9">Intimated Death Claim</option>
+                        <option value="10">Intimated Death Claim-Annuity</option>
+                        <option value="11">Other Reason</option>
+                        <option value="12">Paid Up</option>
+                        <option value="13">Refunded</option>
+                        <option value="14">Surrendered</option>
+                        <option value="15">Surrendered Reinvested Auto</option>
+                        <option value="16">Unpaid</option>
+                    </select>
+
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+            <div id="apiResponse" class="response-box" style="display:none;"></div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <!-- Bulk Upload -->
+            <div class="card">
+                <h2>Bulk Upload</h2>
+                <input type="file" id="bulkUpload" accept=".csv, .xls, .xlsx" />
+                <button class="btn" id="bulkUploadBtn">Upload File</button>
+                <p id="uploadStatus"></p>
+                <a id="downloadLink" class="btn" style="display: none;" download>⬇️ Download Processed File</a>
+            </div>
+
+            <!-- E-Sign Authentication -->
+            <div class="card">
+                <h2>E-Sign Auth</h2>
+                <input id="policyNumber" type="text" placeholder="Enter Policy Number" required>
+                <input id="signatureUpload" type="file" accept="image/*" />
+                <div id="loadingSpinner" style="display: none; text-align: center; margin-top: 10px;">
+                    <span>⏳ Verifying signature, please wait...</span>
+                </div>
+                
+                <button class="btn" id="authBtn">Authenticate</button>
+                <div id="signatureResult" class="response-box" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+</html>

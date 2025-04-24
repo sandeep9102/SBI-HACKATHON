@@ -1,0 +1,22 @@
+{
+    "policy_holder_name": "Sandeep",
+    "assured_age": "15",
+    "nominee_relation": "Brother",
+    "occupation": "Service",
+    "policy_sum_assured": "50000",
+    "premium": "500",
+    "premium_payment_mode": "Quarterly",
+    "annual_income": "30000",
+    "holder_marital_status": "Married",
+    "indiv_requirement_flag": "Non Medical",
+    "policy_term": "5000",
+    "policy_payment_term": "88",
+    "product_type": "Traditional",
+    "channel": "Bancassurance",
+    "bank_code": "841301",
+    "policy_risk_commencement_date": "2022-02-22",
+    "date_of_death": "2022-02-02",
+    "intimation_date": "2020-02-01",
+    "status": "Inforce",
+    "sub_status": "Death Claim Paid"
+}
