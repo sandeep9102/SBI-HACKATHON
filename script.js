@@ -35,7 +35,7 @@ async function submitFraudForm(event) {
     console.log("🔍 Sending JSON Data:", JSON.stringify(jsonData, null, 2));
 
     try {
-        let response = await fetch("http://13.203.216.161/model/predict/", {
+        let response = await fetch("https://frauddetection-production-fcb7.up.railway.app/model/predict/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(jsonData),
@@ -100,7 +100,7 @@ async function uploadBulkFile() {
         downloadLink.style.display = "none";
         document.getElementById("bulkUploadBtn").disabled = true;
 
-        const uploadResponse = await fetch("http://13.203.216.161/model/predict_file/", {
+        const uploadResponse = await fetch("https://frauddetection-production-fcb7.up.railway.app/model/predict_file/", {
             method: "POST",
             body: formData,
         });
@@ -109,7 +109,7 @@ async function uploadBulkFile() {
             throw new Error(`Upload failed: ${await uploadResponse.text()}`);
         }
 
-        const downloadResponse = await fetch("http://13.203.216.161/model/download_file/", {
+        const downloadResponse = await fetch("https://frauddetection-production-fcb7.up.railway.app/model/download_file/", {
             method: "GET",
         });
 
@@ -165,7 +165,7 @@ async function authenticateSignature() {
     formData.append("image", signatureUpload);
 
     try {
-        const response = await fetch("http://13.203.216.161/model/verify_signature/", {
+        const response = await fetch("https://frauddetection-production-fcb7.up.railway.app/model/verify_signature/", {
             method: "POST",
             body: formData
         });
@@ -200,10 +200,3 @@ async function authenticateSignature() {
         loadingSpinner.style.display = "none";
     }
 }
-
-
-
-
-
-
-
